@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: propentatech/portfolios-formation-dev-web2026
+  IMAGE_NAME: propentatech/portfolios-formation-web2026
 
 jobs:
   build-and-push:

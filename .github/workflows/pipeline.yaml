@@ -5,9 +5,6 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  IMAGE_NAME: propentatech/portfolios-formation-web2026
-
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -23,6 +20,7 @@ jobs:
 
       - name: Build and Push
         run: |
+          IMAGE_NAME="propentatech/${{ github.event.repository.name }}"
           TAG=${GITHUB_SHA::7}
           docker build -t $IMAGE_NAME:$TAG .
           docker tag $IMAGE_NAME:$TAG $IMAGE_NAME:latest

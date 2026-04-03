@@ -226,3 +226,20 @@ footer { text-align: center; padding: 50px 8%; border-top: 1px solid var(--borde
 
     .contact-wrapper { grid-template-columns: 1fr; }
 }
+/* --- AJUSTEMENTS HAMBURGER --- */
+@media (max-width: 968px) {
+    .menu-toggle {
+        display: flex; /* On l'affiche enfin ! */
+    }
+
+    /* Animation du bouton quand le menu est ouvert */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}

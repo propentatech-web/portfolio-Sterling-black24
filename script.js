@@ -1,50 +1,114 @@
-// --- GESTION DU THÈME DYNAMIQUE ---
-const themeToggle = document.querySelector('#theme-toggle');
-const themeIcon = themeToggle.querySelector('i');
+/* --- CONFIGURATION INITIALE & TYPING EFFECT --- */
+document.addEventListener('DOMContentLoaded', () => {
+    const typingElement = document.querySelector('#typing-text');
+    // On vérifie si l'élément existe pour éviter les erreurs
+    if (typingElement) {
+        const words = ["Développeur Full-Stack", "Créateur Digital", "Consultant Géosciences", "Passionné d'Anime"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
 
-// Fonction pour appliquer le thème
-const applyTheme = (theme) => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('portfolio-theme', theme);
-    
-    if (theme === 'light') {
-        themeIcon.classList.replace('fa-moon', 'fa-sun');
-    } else {
-        themeIcon.classList.replace('fa-sun', 'fa-moon');
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2000; 
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500;
+            }
+            setTimeout(type, typeSpeed);
+        }
+        type();
     }
-};
-
-// Vérifier la préférence sauvegardée
-const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
-applyTheme(savedTheme);
-
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    applyTheme(newTheme);
 });
 
-// --- MENU MOBILE ---
-const menuToggle = document.querySelector('#mobile-menu');
+/* --- GESTION DU MENU MOBILE --- */
+const mobileMenu = document.querySelector('#mobile-menu');
 const navLinks = document.querySelector('.nav-links');
 
-menuToggle.addEventListener('click', () => {
+mobileMenu.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
     navLinks.classList.toggle('active');
-    // Animation simple du hamburger
-    const bars = document.querySelectorAll('.bar');
-    bars[0].classList.toggle('rotate-down'); // Optionnel: ajouter des classes CSS pour l'animation en X
 });
 
-// Fermer le menu au clic sur un lien
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
         navLinks.classList.remove('active');
     });
 });
 
-// --- ANIMATION AU DÉFILEMENT (OBSERVER) ---
+/* --- GESTION DU MODE SOMBRE --- */
+const themeToggle = document.querySelector('#theme-toggle');
+const body = document.body;
+const themeIcon = themeToggle.querySelector('i');
+
+if (localStorage.getItem('theme') === 'light') {
+    body.setAttribute('data-theme', 'light');
+    themeIcon.classList.replace('fa-moon', 'fa-sun');
+}
+
+themeToggle.addEventListener('click', () => {
+    const isDark = body.getAttribute('data-theme') !== 'light';
+    if (isDark) {
+        body.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+    }
+});
+
+/* --- BARRE DE PROGRESSION & ACTIVE LINKS AU SCROLL --- */
+window.addEventListener('scroll', () => {
+    // 1. Barre de progression
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    
+    let progressBar = document.querySelector('.scroll-progress');
+    if (!progressBar) {
+        progressBar = document.createElement('div');
+        progressBar.className = 'scroll-progress';
+        document.body.appendChild(progressBar);
+    }
+    progressBar.style.width = scrolled + "%";
+
+    // 2. Gestion Active Link
+    let current = '';
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href').includes(current)) {
+            a.classList.add('active');
+        }
+    });
+});
+
+/* --- ANIMATION D'APPARITION (INTERSECTION OBSERVER) --- */
 const observerOptions = { threshold: 0.15 };
-const revealObserver = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
@@ -53,26 +117,38 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.querySelectorAll('.section-container').forEach(section => {
-    section.style.opacity = "0";
-    section.style.transform = "translateY(30px)";
-    section.style.transition = "all 0.8s ease-out";
-    revealObserver.observe(section);
+    observer.observe(section);
 });
 
-// Style injecté par JS pour l'animation au scroll
-const style = document.createElement('style');
-style.innerHTML = `
-    .visible {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
+/* --- EFFET PARALLAXE MOUSEMOVE --- */
+document.addEventListener('mousemove', (e) => {
+    const img = document.querySelector('.hero-image img');
+    if (img && window.innerWidth > 768) { // On désactive sur mobile pour la perf
+        const x = (window.innerWidth - e.pageX * 2) / 100;
+        const y = (window.innerHeight - e.pageY * 2) / 100;
+        img.style.transform = `translateX(${x}px) translateY(${y}px)`;
     }
-`;
-document.head.appendChild(style);
-
-// --- GESTION DU FORMULAIRE ---
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    alert(`Merci ${name}, votre message a bien été envoyé (Démonstration) !`);
-    this.reset();
 });
+
+/* --- ANIMATION FORMULAIRE --- */
+const contactForm = document.querySelector('#contact-form');
+if (contactForm) {
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+        submitBtn.style.opacity = '0.7';
+
+        setTimeout(() => {
+            submitBtn.innerHTML = ''; 
+            submitBtn.classList.add('success');
+            setTimeout(() => {
+                submitBtn.classList.remove('success');
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.opacity = '1';
+                contactForm.reset();
+            }, 3000);
+        }, 2000);
+    });
+}

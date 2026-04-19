@@ -3,171 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nathanaël Michel | Développeur Full-Stack & Freelance</title>
-    <meta name="description" content="Portfolio de Nathanaël Michel Lowe Kamgang - Développeur Full-Stack, Créateur de contenu et Consultant en Géosciences à Yaoundé.">
-    <link rel="stylesheet" href="style.css">
+
+    <!-- SEO amélioré -->
+    <title>Nathanaël Michel | Développeur Full-Stack & Freelance — Yaoundé</title>
+    <meta name="description" content="Portfolio de Nathanaël Michel Lowe Kamgang — Développeur Full-Stack, Designer Graphique et Consultant en Géosciences basé à Yaoundé, Cameroun. Spécialisé React, Java et Design.">
+    <meta name="keywords" content="développeur full-stack, freelance cameroun, yaoundé, react, java, design graphique, portfolio">
+    <meta name="author" content="Nathanaël Michel Lowe Kamgang">
+
+    <!-- Open Graph (partage réseaux sociaux) -->
+    <meta property="og:title" content="Nathanaël Michel | Développeur Full-Stack">
+    <meta property="og:description" content="Portfolio professionnel — Web, Logiciels, Design & Géosciences.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_CM">
+
+    <!-- Favicon inline SVG (pas besoin de fichier externe) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <!-- Préchargement des polices critiques -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                NM<span>.DEV</span>
-            </div>
+    <!-- Barre de progression (injectée via CSS/JS) -->
+    <div class="scroll-progress" role="progressbar" aria-label="Progression de la lecture" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Accueil</a></li>
-                <li><a href="#apropos">À Propos</a></li>
-                <li><a href="#parcours">Parcours</a></li>
-                <li><a href="#competences">Compétences</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#contact" class="nav-btn">Me Contacter</a></li>
+    <!-- ===================== NAVIGATION ===================== -->
+    <header role="banner">
+        <nav class="navbar" aria-label="Navigation principale">
+            <a href="#home" class="logo" aria-label="Retour à l'accueil">
+                NM<span>.DEV</span>
+            </a>
+
+            <ul class="nav-links" role="list" id="nav-menu">
+                <li><a href="#home" class="nav-link active">Accueil</a></li>
+                <li><a href="#apropos" class="nav-link">À Propos</a></li>
+                <li><a href="#parcours" class="nav-link">Parcours</a></li>
+                <li><a href="#competences" class="nav-link">Compétences</a></li>
+                <li><a href="#projets" class="nav-link">Projets</a></li>
+                <li><a href="#contact" class="nav-link nav-btn">Me Contacter</a></li>
             </ul>
 
             <div class="nav-right">
-                <button id="theme-toggle" class="theme-btn" title="Changer le mode">
-                    <i class="fas fa-moon"></i>
+                <button id="theme-toggle" class="theme-btn" aria-label="Basculer le thème clair/sombre" title="Changer le mode">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
-                <div class="menu-toggle" id="mobile-menu">
+                <button class="menu-toggle" id="mobile-menu" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
-                </div>
+                </button>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section id="home" class="hero">
+    <main id="main-content">
+
+        <!-- ===================== HERO ===================== -->
+        <section id="home" class="hero" aria-labelledby="hero-title">
             <div class="hero-content">
-                <h1>
+                <div class="hero-badge">
+                    <span class="badge-dot" aria-hidden="true"></span>
+                    Disponible pour de nouveaux projets
+                </div>
+                <h1 id="hero-title">
                     Lowe Kamgang <br>
                     <span class="highlight">Nathanaël Michel</span>
                 </h1>
-                <p>
-                    Étudiant en Informatique & Consultant en Géosciences | Développeur Full-Stack | Créateur Digital (Flyers & Design)
+                <p class="hero-subtitle">
+                    <span id="typing-text" aria-live="polite" aria-label="Rôles dynamiques"></span><span class="cursor" aria-hidden="true">|</span>
                 </p>
-                
-                <div class="hero-btns">
-                    <a href="#projets" class="btn primary">Explorer mes projets</a>
-                    <a href="https://wa.me/237658644721" target="_blank" rel="noopener" class="btn secondary">
-                        <i class="fab fa-whatsapp"></i> Discutons sur WhatsApp
+                <p class="hero-desc">
+                    Étudiant en Informatique &amp; Consultant en Géosciences — Je transforme des idées complexes en solutions numériques élégantes.
+                </p>
+
+                <div class="hero-btns" role="group" aria-label="Actions principales">
+                    <a href="#projets" class="btn primary">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        Explorer mes projets
                     </a>
-                    <a href="CV_Nathanael_Lowe.pdf" download class="btn download-btn">
-                        <i class="fas fa-download"></i> Mon CV
+                    <a href="https://wa.me/237658644721" target="_blank" rel="noopener noreferrer" class="btn secondary">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        Discutons sur WhatsApp
+                    </a>
+                    <a href="CV_Campus_France_Nathanael_Michel(1).pdf" download class="btn download-btn">
+                        <i class="fas fa-download" aria-hidden="true"></i>
+                        Mon CV
                     </a>
                 </div>
+
+                <!-- Statistiques rapides -->
+                <div class="hero-stats" aria-label="Quelques chiffres">
+                    <div class="stat">
+                        <span class="stat-number" data-target="4">0</span>+
+                        <span class="stat-label">Projets</span>
+                    </div>
+                    <div class="stat-divider" aria-hidden="true"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="2">0</span>
+                        <span class="stat-label">Domaines</span>
+                    </div>
+                    <div class="stat-divider" aria-hidden="true"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="100">0</span>%
+                        <span class="stat-label">Passionné</span>
+                    </div>
+                </div>
             </div>
-            
-            <div class="hero-image">
-                <img src="sukuna-x-gojo-5120x2880-21530.png" alt="Illustration Nathanaël Lowe - Passionné d'Anime">
+
+            <div class="hero-image" aria-hidden="true">
+                <div class="hero-image-glow"></div>
+                <img src="sukuna-x-gojo-5120x2880-21530.png"
+                     alt="Illustration Nathanaël Lowe — Passionné d'Anime et de Tech"
+                     loading="eager"
+                     width="380" height="380">
             </div>
         </section>
 
-        <section id="apropos" class="section-container">
-            <h2 class="section-title"><i class="fas fa-user"></i> À Propos de Moi</h2>
+        <!-- ===================== À PROPOS ===================== -->
+        <section id="apropos" class="section-container" aria-labelledby="apropos-title">
+            <h2 class="section-title" id="apropos-title">
+                <i class="fas fa-user" aria-hidden="true"></i> À Propos de Moi
+            </h2>
             <div class="card about-card">
-                <p>
-                    <i class="fas fa-code"></i> 
-                    Développeur passionné par l'écosystème web et logiciel, je construis des solutions modernes allant du site <strong>e-commerce</strong> aux logiciels de gestion complexes. 
-                    <br><br>
-                    <i class="fas fa-palette"></i>
-                    Mon expertise s'étend également au design graphique, où je conçois des <strong>flyers</strong> et identités visuelles percutantes.
-                    <br><br>
-                    <i class="fas fa-brain"></i>
-                    Ma double formation en informatique et géosciences m'offre une rigueur d'analyse unique pour résoudre des problématiques multidisciplinaires.
-                </p>
-            </div>
-        </section>
-
-        <section id="parcours" class="section-container">
-            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Parcours Académique</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3><i class="fas fa-laptop-code"></i> Licence 1 en Informatique</h3>
-                    <span class="date"><i class="fas fa-calendar-alt"></i> 2025 - 2026 (En cours)</span>
-                    <p>Algorithmique, structures de données et POO avec Java.</p>
+                <div class="about-item">
+                    <div class="about-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
+                    <div>
+                        <h3>Développeur Web & Logiciel</h3>
+                        <p>Je construis des solutions modernes allant du site <strong>e-commerce</strong> aux logiciels de gestion complexes avec une architecture solide et des interfaces soignées.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <h3><i class="fas fa-flask"></i> Baccalauréat Scientifique (Série D)</h3>
-                    <span class="date"><i class="fas fa-calendar-alt"></i> Session 2025</span>
-                    <p>Base solide en mathématiques et sciences de la vie.</p>
+                <div class="about-item">
+                    <div class="about-icon"><i class="fas fa-palette" aria-hidden="true"></i></div>
+                    <div>
+                        <h3>Designer Graphique</h3>
+                        <p>Mon expertise en design me permet de concevoir des <strong>flyers</strong> et identités visuelles percutantes qui captivent et convertissent.</p>
+                    </div>
+                </div>
+                <div class="about-item">
+                    <div class="about-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
+                    <div>
+                        <h3>Approche Multidisciplinaire</h3>
+                        <p>Ma double formation en informatique et géosciences m'offre une <strong>rigueur d'analyse</strong> unique pour résoudre des problématiques complexes.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="competences" class="section-container">
-            <h2 class="section-title"><i class="fas fa-tools"></i> Compétences & Outils</h2>
+        <!-- ===================== PARCOURS ===================== -->
+        <section id="parcours" class="section-container" aria-labelledby="parcours-title">
+            <h2 class="section-title" id="parcours-title">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i> Parcours Académique
+            </h2>
+            <ol class="timeline" aria-label="Chronologie académique">
+                <li class="timeline-item">
+                    <div class="timeline-dot" aria-hidden="true"></div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-laptop-code" aria-hidden="true"></i> Licence 1 en Informatique</h3>
+                        <time class="date" datetime="2025/2026">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i> 2025 — 2026 <span class="badge-en-cours">En cours</span>
+                        </time>
+                        <p>Algorithmique, structures de données et programmation orientée objet avec Java.</p>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-dot" aria-hidden="true"></div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-flask" aria-hidden="true"></i> Baccalauréat Scientifique — Série D</h3>
+                        <time class="date" datetime="2025">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i> Session 2025
+                        </time>
+                        <p>Base solide en mathématiques, sciences de la vie et de la terre.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- ===================== COMPÉTENCES ===================== -->
+        <section id="competences" class="section-container" aria-labelledby="competences-title">
+            <h2 class="section-title" id="competences-title">
+                <i class="fas fa-tools" aria-hidden="true"></i> Compétences & Outils
+            </h2>
             <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fas fa-laptop-code"></i>
+                <article class="skill-card" tabindex="0">
+                    <div class="skill-icon-wrapper"><i class="fas fa-laptop-code" aria-hidden="true"></i></div>
                     <h3>Développement</h3>
-                    <p>Web (React, JS, TS)<br>Logiciels (Java POO)<br>E-commerce & Gestion</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-paint-brush"></i>
+                    <ul class="skill-list" aria-label="Technologies de développement">
+                        <li>Web — React, JS, TypeScript</li>
+                        <li>Logiciels — Java POO</li>
+                        <li>E-commerce & Gestion</li>
+                    </ul>
+                </article>
+                <article class="skill-card" tabindex="0">
+                    <div class="skill-icon-wrapper"><i class="fas fa-paint-brush" aria-hidden="true"></i></div>
                     <h3>Design & Flyers</h3>
-                    <p>Création de Flyers<br>Logos & Branding<br>Photoshop & Premiere Pro</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-globe-africa"></i>
+                    <ul class="skill-list" aria-label="Outils de design">
+                        <li>Création de Flyers & Affiches</li>
+                        <li>Logos & Identité de marque</li>
+                        <li>Photoshop & Premiere Pro</li>
+                    </ul>
+                </article>
+                <article class="skill-card" tabindex="0">
+                    <div class="skill-icon-wrapper"><i class="fas fa-globe-africa" aria-hidden="true"></i></div>
                     <h3>Géosciences</h3>
-                    <p>Géophysique<br>Hydrogéologie<br>Études de sol</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-user-friends"></i>
+                    <ul class="skill-list" aria-label="Domaines géoscientifiques">
+                        <li>Géophysique appliquée</li>
+                        <li>Hydrogéologie</li>
+                        <li>Études et analyses de sol</li>
+                    </ul>
+                </article>
+                <article class="skill-card" tabindex="0">
+                    <div class="skill-icon-wrapper"><i class="fas fa-user-friends" aria-hidden="true"></i></div>
                     <h3>Soft Skills</h3>
-                    <p>Tutorat académique<br>Gestion de projet<br>Entrepreneuriat</p>
-                </div>
+                    <ul class="skill-list" aria-label="Compétences transversales">
+                        <li>Tutorat académique</li>
+                        <li>Gestion de projet</li>
+                        <li>Esprit entrepreneurial</li>
+                    </ul>
+                </article>
             </div>
         </section>
 
-        <section id="projets" class="section-container">
-            <h2 class="section-title"><i class="fas fa-rocket"></i> Mes Projets Phares</h2>
+        <!-- ===================== PROJETS ===================== -->
+        <section id="projets" class="section-container" aria-labelledby="projets-title">
+            <h2 class="section-title" id="projets-title">
+                <i class="fas fa-rocket" aria-hidden="true"></i> Mes Projets Phares
+            </h2>
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
+                <article class="project-card" tabindex="0">
+                    <div class="project-icon" aria-hidden="true"><i class="fas fa-shopping-cart"></i></div>
                     <h3>E-commerce OtakuTech</h3>
-                    <p>Plateforme complète de vente en ligne avec catalogue dynamique et gestion de panier.</p>
-                    <div class="project-tech"><span class="badge">React</span><span class="badge">JS</span></div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-user-graduate"></i></div>
+                    <p>Plateforme complète de vente en ligne avec catalogue dynamique, filtres et gestion de panier avancée.</p>
+                    <footer class="project-tech">
+                        <span class="badge">React</span>
+                        <span class="badge">JS</span>
+                    </footer>
+                </article>
+                <article class="project-card" tabindex="0">
+                    <div class="project-icon" aria-hidden="true"><i class="fas fa-user-graduate"></i></div>
                     <h3>Student Manager</h3>
-                    <p>Logiciel de gestion des étudiants : inscriptions, notes et archivage sécurisé.</p>
-                    <div class="project-tech"><span class="badge">Java</span><span class="badge">POO</span></div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-palette"></i></div>
+                    <p>Logiciel de gestion des étudiants : inscriptions, notes, bulletins et archivage sécurisé.</p>
+                    <footer class="project-tech">
+                        <span class="badge">Java</span>
+                        <span class="badge">POO</span>
+                    </footer>
+                </article>
+                <article class="project-card" tabindex="0">
+                    <div class="project-icon" aria-hidden="true"><i class="fas fa-palette"></i></div>
                     <h3>Flyers & Branding</h3>
-                    <p>Réalisation de supports marketing et visuels publicitaires pour divers clients.</p>
-                    <div class="project-tech"><span class="badge">Photoshop</span><span class="badge">Design</span></div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-university"></i></div>
+                    <p>Réalisation de supports marketing et visuels publicitaires premium pour divers clients.</p>
+                    <footer class="project-tech">
+                        <span class="badge">Photoshop</span>
+                        <span class="badge">Design</span>
+                    </footer>
+                </article>
+                <article class="project-card" tabindex="0">
+                    <div class="project-icon" aria-hidden="true"><i class="fas fa-university"></i></div>
                     <h3>Banking System</h3>
-                    <p>Système de gestion bancaire en Java (Back-end) avec architecture logique rigoureuse.</p>
-                    <div class="project-tech"><span class="badge">Java SE</span></div>
-                </div>
+                    <p>Système de gestion bancaire en Java (Back-end) avec architecture logique rigoureuse et sécurisée.</p>
+                    <footer class="project-tech">
+                        <span class="badge">Java SE</span>
+                    </footer>
+                </article>
             </div>
         </section>
 
-        <section id="contact" class="section-container">
-            <h2 class="section-title"><i class="fas fa-envelope-open-text"></i> Contactez-moi</h2>
+        <!-- ===================== CONTACT ===================== -->
+        <section id="contact" class="section-container" aria-labelledby="contact-title">
+            <h2 class="section-title" id="contact-title">
+                <i class="fas fa-envelope-open-text" aria-hidden="true"></i> Contactez-moi
+            </h2>
             <div class="contact-wrapper">
-                <form id="contact-form" class="contact-form">
+                <form id="contact-form" class="contact-form" novalidate aria-label="Formulaire de contact">
                     <div class="form-group">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Nom complet" required>
+                        <label for="contact-name" class="sr-only">Nom complet</label>
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        <input type="text" id="contact-name" name="name" placeholder="Nom complet" required autocomplete="name">
+                        <span class="field-error" aria-live="polite"></span>
                     </div>
                     <div class="form-group">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Adresse Email" required>
+                        <label for="contact-email" class="sr-only">Adresse Email</label>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <input type="email" id="contact-email" name="email" placeholder="Adresse Email" required autocomplete="email">
+                        <span class="field-error" aria-live="polite"></span>
                     </div>
                     <div class="form-group">
-                        <i class="fas fa-concierge-bell"></i>
-                        <select required>
+                        <label for="contact-service" class="sr-only">Service souhaité</label>
+                        <i class="fas fa-concierge-bell" aria-hidden="true"></i>
+                        <select id="contact-service" name="service" required>
                             <option value="" disabled selected>Service souhaité</option>
                             <option value="ecommerce">E-commerce / Web</option>
                             <option value="logiciel">Logiciel de Gestion</option>
@@ -176,30 +303,119 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <i class="fas fa-comment-dots"></i>
-                        <textarea rows="5" placeholder="Votre message..." required></textarea>
+                        <label for="contact-message" class="sr-only">Votre message</label>
+                        <i class="fas fa-comment-dots" aria-hidden="true"></i>
+                        <textarea id="contact-message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+                        <span class="field-error" aria-live="polite"></span>
                     </div>
-                    <button type="submit" class="btn primary full-width">Envoyer le message</button>
+                    <button type="submit" class="btn primary full-width" id="submit-btn">
+                        <span class="btn-text">Envoyer le message</span>
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    </button>
                 </form>
 
-                <div class="contact-info">
-                    <p><i class="fas fa-map-marker-alt"></i> Yaoundé, Cameroun</p>
-                    <p><i class="fas fa-envelope"></i> nathanaellowe4@gmail.com</p>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/nathanael-lowe-3558933b5/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/Sterling-black24" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://wa.me/237658644721" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <aside class="contact-info" aria-label="Informations de contact">
+                    <div class="contact-detail">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>
+                        <div>
+                            <strong>Localisation</strong>
+                            <p>Yaoundé, Cameroun</p>
+                        </div>
                     </div>
-                </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:nathanaellowe4@gmail.com">nathanaellowe4@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></div>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <a href="https://wa.me/237658644721" target="_blank" rel="noopener noreferrer">+237 658 644 721</a>
+                        </div>
+                    </div>
+
+                    <div class="social-links" aria-label="Réseaux sociaux">
+                        <a href="https://www.linkedin.com/in/nathanael-lowe-3558933b5/" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://github.com/Sterling-black24" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://wa.me/237658644721" target="_blank" rel="noopener noreferrer" aria-label="Contact WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </aside>
             </div>
         </section>
     </main>
 
-    <footer>
+    <!-- ===================== FOOTER ===================== -->
+    <footer role="contentinfo">
         <div class="footer-content">
-            <p>&copy; 2026 Lowe Kamgang Nathanaël Michel. Fait avec passion.</p>
+            <p>&copy; 2026 Lowe Kamgang Nathanaël Michel. Fait avec <span aria-hidden="true">❤️</span><span class="sr-only">passion</span> depuis Yaoundé.</p>
         </div>
     </footer>
+
+    <!-- ===================== CHAT FLOTTANT ===================== -->
+    <div id="chat-widget" aria-label="Assistant virtuel" role="complementary">
+        <!-- Bouton flottant -->
+        <button id="chat-toggle" aria-label="Ouvrir l'assistant virtuel" aria-expanded="false" aria-controls="chat-window">
+            <span class="chat-toggle-icon">
+                <i class="fas fa-comment-dots" aria-hidden="true"></i>
+            </span>
+            <span class="chat-toggle-close" aria-hidden="true">
+                <i class="fas fa-times"></i>
+            </span>
+            <span class="chat-notification-dot" aria-hidden="true"></span>
+        </button>
+
+        <!-- Fenêtre de chat -->
+        <div id="chat-window" role="dialog" aria-modal="true" aria-label="Chat avec l'assistant" aria-hidden="true">
+            <header class="chat-header">
+                <div class="chat-avatar" aria-hidden="true">NM</div>
+                <div class="chat-header-info">
+                    <strong>Assistant NM.DEV</strong>
+                    <span class="chat-status">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        En ligne
+                    </span>
+                </div>
+                <button class="chat-close-btn" id="chat-close" aria-label="Fermer le chat">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </header>
+
+            <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-atomic="false">
+                <!-- Les messages sont injectés par JS -->
+            </div>
+
+            <!-- Suggestions rapides -->
+            <div class="chat-suggestions" id="chat-suggestions" aria-label="Questions suggérées">
+                <button class="suggestion-chip" data-message="Quels services proposez-vous ?">Services 💼</button>
+                <button class="suggestion-chip" data-message="Comment vous contacter ?">Contact 📬</button>
+                <button class="suggestion-chip" data-message="Montrez-moi vos projets">Projets 🚀</button>
+            </div>
+
+            <form class="chat-input-area" id="chat-form" aria-label="Envoyer un message" novalidate>
+                <label for="chat-input" class="sr-only">Votre message</label>
+                <input
+                    type="text"
+                    id="chat-input"
+                    placeholder="Écrivez votre message..."
+                    autocomplete="off"
+                    maxlength="300"
+                    aria-label="Message à envoyer"
+                >
+                <button type="submit" class="chat-send-btn" aria-label="Envoyer">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
